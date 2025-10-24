@@ -24,9 +24,14 @@ jobs:
         python -m pip install --upgrade pip
         pip install pygame numpy pyinstaller
         
+    - name: List files to debug
+      run: |
+        dir *.png /s
+        echo "=== Current directory structure ==="
+        
     - name: Build executable with resources
       run: |
-        pyinstaller --onefile --windowed --name "4D_Visualizer" --add-data "*.png;." --add-data "4d/*.png;4d/" main.py
+        pyinstaller --onefile --windowed --name "4D_Visualizer" --add-data "arrow_left.png;." --add-data "arrow_right.png;." --add-data "arrow_up.png;." --add-data "arrow_down.png;." --add-data "arrow_up_left.png;." --add-data "arrow_up_right.png;." --add-data "arrow_down_left.png;." --add-data "arrow_down_right.png;." --add-data "rotate_left.png;." --add-data "rotate_right.png;." --add-data "reset.png;." main.py
         
     - name: Upload Windows Executable
       uses: actions/upload-artifact@v4
